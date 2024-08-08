@@ -4,4 +4,4 @@ COPY . .
 
 RUN ./setup.sh
 
-CMD ["bash"]
+CMD ["bash", "-c", "postfix start && tail -f /dev/null"]
