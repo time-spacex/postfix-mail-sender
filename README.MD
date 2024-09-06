@@ -3,7 +3,7 @@
 ~/mail-templates/sample.txt - шаблон для отправки письма, монитруется как volume в контейнер
 
 ```
-sudo docker container exec postfix sh -c 'sendmail -f no-reply@ddos-guard.net -t < ~/mail-templates/sample.txt'
+sudo docker exec postfix sh -c 'sendmail -f no-reply@ddos-guard.net -t < ~/mail-templates/sample.txt'
 ```
 
 ```
