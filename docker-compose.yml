@@ -5,3 +5,7 @@ services:
     image: registry.ddos-guard.net/postfix:latest
     container_name: postfix
     restart: unless-stopped
+    volumes:
+      - /home/rkleshnev/dev/postfix_mail_sender/mail-templates:/root/mail-templates
+    ports:
+      - 2525:25
