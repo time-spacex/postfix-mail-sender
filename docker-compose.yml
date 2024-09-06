@@ -9,3 +9,21 @@ services:
       - /home/rkleshnev/dev/postfix_mail_sender/mail-templates:/root/mail-templates
     ports:
       - 2525:25
+  alias:
+    image: registry.ddos-guard.net/alpine:3.18
+    volumes:
+      - /usr/local/bin:/usr/local/bin
+    depends_on:
+      - postfix
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        if [ ! -f /usr/local/bin/sendmail.sh ]; then
+          touch /usr/local/bin/sendmail.sh && \
+          echo 'cp "$2" /home/rkleshnev/dev/postfix_mail_sender/mail-templates/' >> /usr/local/bin/sendmail.sh && \
+          echo 'sudo docker exec postfix sh -c "sendmail -f $1 -t < ~/mail-templates/$(basename $2)"' >> /usr/local/bin/sendmail.sh && \
+          echo 'rm /home/rkleshnev/dev/postfix_mail_sender/mail-templates/$(basename $2)' >> /usr/local/bin/sendmail.sh && \
+          chmod +x /usr/local/bin/sendmail.sh
+        else \
+          echo "sendmail.sh already exists, skipping script creation."; \
+        fi
