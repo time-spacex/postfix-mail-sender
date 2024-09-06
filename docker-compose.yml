@@ -1,5 +1,3 @@
-version: '3.1'
-
 services:
   postfix:
     image: registry.ddos-guard.net/postfix:latest
