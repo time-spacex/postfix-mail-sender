@@ -17,11 +17,11 @@ services:
     command:
       - |
         if [ ! -f /usr/local/bin/sendmail ]; then
-          touch /usr/local/bin/sendmail && \
-          echo 'cp "$2" /storage/postfix-mail-sender/mail-templates/' >> /usr/local/bin/sendmail && \
-          echo 'sudo docker exec postfix sh -c "sendmail -f $1 -t < ~/mail-templates/$(basename $2)"' >> /usr/local/bin/sendmail && \
-          echo 'rm /storage/postfix-mail-sender/mail-templates/$(basename $2)' >> /usr/local/bin/sendmail && \
+          touch /usr/local/bin/sendmail
+          echo 'sudo cp "$2" /storage/postfix-mail-sender/mail-templates/' >> /usr/local/bin/sendmail
+          echo 'sudo docker exec postfix sh -c "sendmail -f $1 -t < ~/mail-templates/$(basename $2)"' >> /usr/local/bin/sendmail
+          echo 'sudo rm /storage/postfix-mail-sender/mail-templates/$(basename $2)' >> /usr/local/bin/sendmail
           chmod +x /usr/local/bin/sendmail
-        else \
-          echo "sendmail already exists, skipping script creation."; \
+        else
+          echo "sendmail already exists, skipping script creation."
         fi
