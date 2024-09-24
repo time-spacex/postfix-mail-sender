@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
   postfix:
-    image: registry.ddos-guard.net/postfix:latest
+    image: registry.ddos-guard.net/postfix:3.9.0
     container_name: postfix
     restart: unless-stopped
     volumes:

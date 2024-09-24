@@ -1,11 +1,13 @@
 services:
   postfix:
-    image: registry.ddos-guard.net/postfix:latest
+    image: registry.ddos-guard.net/postfix:3.9.0
     container_name: postfix
     restart: unless-stopped
     volumes:
       - /storage/postfix-mail-sender/mail-templates:/root/mail-templates
     ports:
+    #  for web-dev:
+    #  - 25:25
       - 2525:25
   alias:
     image: registry.ddos-guard.net/alpine:3.18
